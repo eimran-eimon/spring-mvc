@@ -18,13 +18,16 @@
 					<tr>
 						<th>Name</th>
 						<th>Skills</th>
-						<th></th>
+
 					</tr>
 					</thead>
 					<tbody>
 					<tr th:each="developer : ${developers}">
 						<td th:text="${developer.firstName + ' ' + developer.lastName}"></td>
 						<td>
+							<span th:each="skill : ${developer.skillList}">
+								<br/>&nbsp;&nbsp;<span th:text="${skill.label}" /> - <span th:text="${skill.description}" />
+							</span>
 						</td>
 						<td>
 							<a th:href="@{/developer/{id}(id=${developer.id})}">view</a>

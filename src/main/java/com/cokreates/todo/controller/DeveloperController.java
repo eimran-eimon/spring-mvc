@@ -37,6 +37,7 @@ public class DeveloperController {
 	@RequestMapping(value = "/developers", method = RequestMethod.GET)
 	public String developersList(Model model) {
 		model.addAttribute("developers", repository.findAll());
+		model.addAttribute("skills",skillRepository.findAll());
 		return "developers";
 	}
 
