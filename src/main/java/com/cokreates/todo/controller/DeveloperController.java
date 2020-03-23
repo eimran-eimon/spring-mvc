@@ -41,6 +41,14 @@ public class DeveloperController {
 		return "developers";
 	}
 
+	@RequestMapping(value = "/de")
+	public String addDeveloper(){
+
+
+
+		return "redirect:/developer/";
+	};
+
 	@RequestMapping(value = "/developer/{id}/skills", method = RequestMethod.POST)
 	public String addSkills(@PathVariable Long id, @RequestParam Long skillId, Model model){
 		Optional<Developer> developer = repository.findById(id);

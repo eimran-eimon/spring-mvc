@@ -23,11 +23,11 @@
 					</thead>
 					<tbody>
 					<tr th:each="developer : ${developers}">
-						<td th:text="${developer.firstName + ' ' + developer.lastName}"></td>
+						<td th:valign="center"  th:text="${developer.firstName + ' ' + developer.lastName}"></td>
 						<td>
-							<span th:each="skill : ${developer.skillList}">
-								<br/>&nbsp;&nbsp;<span th:text="${skill.label}" /> - <span th:text="${skill.description}" />
-							</span>
+							<ul th:each="skill : ${developer.skillList}">
+								&nbsp;&nbsp;<li th:text="${skill.label}" /> - <span th:text="${skill.description}" />
+							</ul>
 						</td>
 						<td>
 							<a th:href="@{/developer/{id}(id=${developer.id})}">view</a>
