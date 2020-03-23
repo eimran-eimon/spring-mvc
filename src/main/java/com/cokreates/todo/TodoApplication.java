@@ -32,20 +32,20 @@ public class TodoApplication implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-        Skill javascript = new Skill("javascript", "Javascript language skill");
-        Skill ruby = new Skill("ruby", "Ruby language skill");
-        Skill emberjs = new Skill("emberjs", "Emberjs framework");
-        Skill angularjs = new Skill("angularjs", "Angularjs framework");
+        Skill nodeJS = new Skill("NodeJS", "For asynchronous API.");
+        Skill mongoDB = new Skill("MongoDB", "NoSql Database.");
+        Skill machineLearning = new Skill("Machine Learning", "Used for smart system.");
+        Skill angularjs = new Skill("AngularJS", "AngularJS framework");
 
-        skillRepository.save(javascript);
-        skillRepository.save(ruby);
-        skillRepository.save(emberjs);
+        skillRepository.save(nodeJS);
+        skillRepository.save(mongoDB);
+        skillRepository.save(machineLearning);
         skillRepository.save(angularjs);
         List<Developer> developerList = new LinkedList<Developer>();
         developerList.add(new Developer("Eimran", "Eimon", "eimran@cokreates.com",
-                Arrays.asList(new Skill[]{javascript, ruby})));
+                Arrays.asList(new Skill[]{nodeJS, mongoDB})));
         developerList.add(new Developer("E", "Eimran", "eimon@cokreates.com",
-                Arrays.asList(new Skill[]{emberjs, angularjs})));
+                Arrays.asList(new Skill[]{machineLearning, angularjs})));
         developerRepository.saveAll(developerList);
     }
 }
