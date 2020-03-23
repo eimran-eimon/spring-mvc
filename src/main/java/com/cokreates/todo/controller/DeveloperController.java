@@ -41,12 +41,15 @@ public class DeveloperController {
 		return "developers";
 	}
 
-	@RequestMapping(value = "/de")
-	public String addDeveloper(){
+	@RequestMapping(value = "/developers", method = RequestMethod.POST)
+	public String addDeveloper(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email){
+		Developer developer = new Developer();
+		developer.setFirstName(firstName);
+		developer.setLastName(lastName);
+		developer.setEmail(email);
+		repository.save(developer);
 
-
-
-		return "redirect:/developer/";
+		return "redirect:/developer/"+ developer.getId();
 	};
 
 	@RequestMapping(value = "/developer/{id}/skills", method = RequestMethod.POST)
@@ -55,20 +58,21 @@ public class DeveloperController {
 		Optional<Skill> skill = skillRepository.findById(skillId);
 
 		if(developer.isPresent()){
+
 			if(!developer.get().hasSkill(skill.get())){
 				developer.get().getSkillList().add(skill.get());
 				repository.save(developer.get());
+				model.addAttribute("developer", repository.findById(id).get());
+				model.addAttribute("skills", skillRepository.findAll());
+				return "redirect:/developer/" + developer.get().getId();
+			} else {
+				return "redirect:/developers";
 			}
-			model.addAttribute("developer", repository.findById(id).get());
-			model.addAttribute("skills", skillRepository.findAll());
-			return "redirect:/developer/" + developer.get().getId();
 		}
 
 		return "redirect:/developers";
 
 	}
-
-
 
 
 }
